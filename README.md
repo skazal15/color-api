@@ -58,8 +58,7 @@ This is a NestJS application that provides a single endpoint `/color` to fetch a
     database: 'your-database-name',
     synchronize: true, // Caution: Set to false in production.
     logging: true, // Enable logging for debugging. //set false on production
-    entities: [__dirname + '/**/*.entity{.ts,.js}'],
-  })
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],})
    ```
 
    ```json
@@ -82,6 +81,20 @@ This is a NestJS application that provides a single endpoint `/color` to fetch a
    ```
 
 4. **Create Table:**
+   Before create table, you must to create the database, this is SQL example for create Database:
+   ```sql
+   -- Database: color
+
+   -- DROP DATABASE color;
+   
+   CREATE DATABASE colors
+       WITH 
+       ENCODING = 'UTF8'
+       LC_COLLATE = 'Indonesian_Indonesia.1252'
+       LC_CTYPE = 'Indonesian_Indonesia.1252'
+       TABLESPACE = pg_default
+       CONNECTION LIMIT = 5;
+   ```
    After you create the database, Create table on your database with this SQL.
    ```sql
    -- Table: public.color
@@ -94,11 +107,6 @@ This is a NestJS application that provides a single endpoint `/color` to fetch a
        name character varying COLLATE pg_catalog."default" NOT NULL,
        CONSTRAINT "PK_d15e531d60a550fbf23e1832343" PRIMARY KEY (id)
    )
-
-   TABLESPACE pg_default;
-
-   ALTER TABLE public.color
-       OWNER to root;
    ```
 
 5. **Seed the Table:**
