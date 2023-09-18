@@ -20,6 +20,7 @@ This is a NestJS application that provides a single endpoint `/color` to fetch a
 - [Running Test](#running-test)
 - [Dependencies](#dependencies)
 - [Endpoints](#endpoints)
+- [Containerize App](#containerize-app)
 - [Support](#support)
 - [License](#license)
 
@@ -39,7 +40,7 @@ This is a NestJS application that provides a single endpoint `/color` to fetch a
    ```
    - Install Dependencies:
    ```bash
-   npm install
+   npm install -g
    ```
 
 3. **Set up a PostgreSQL Database:**
@@ -100,7 +101,7 @@ This is a NestJS application that provides a single endpoint `/color` to fetch a
    -- Table: public.color
 
    -- DROP TABLE public.color;
-
+   CREATE SEQUENCE color_id_seq;
    CREATE TABLE public.color
    (
        id integer NOT NULL DEFAULT nextval('color_id_seq'::regclass),
@@ -176,6 +177,17 @@ $ npm run test:cov
    "name": "blue"
    }
    ```
+
+## Containerize App
+- Create network docker for communication 
+   ```bash
+   docker network create colornetwork
+   ```
+- Run docker compose for backend instance:
+   ```bash
+   docker compose up
+   ```
+- Make sure the App running well without error in log terminal.
 
 ## Support
 
